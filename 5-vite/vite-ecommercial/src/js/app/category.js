@@ -15,6 +15,11 @@ export const renderCategory = (categories) => {
 export const handleCategoryGroup = (event) => {
     productGroup.innerHTML = ""; 
     if(event.target.classList.contains("cat-btn")){
+        const currentCategoryBtn = event.target;
+        document.querySelector(".cat-btn.active")?.classList.remove("active");
+        currentCategoryBtn.classList.add("active");
+
+
         const currentCategory = event.target.innerText;
         renderProduct(products.filter(el => 
             el.category === currentCategory || currentCategory === 'All'
