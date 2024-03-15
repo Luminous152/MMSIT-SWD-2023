@@ -1,5 +1,5 @@
 import { products } from "../core/data";
-import { cartItemGroup, productGroup, productTemplate } from "../core/selector"
+import { cartItemGroup, openDrawer, productGroup, productTemplate } from "../core/selector"
 import {  createCartItem, updateCartItemCount, updateCartTotal } from "./cart";
 
 export const renderStar = (rate) => {
@@ -79,6 +79,50 @@ export const handleProductGroup = (event) => {
         const currentProductCardId = parseInt(currentProductCard.getAttribute("product-id"));
 
         const currentProduct = products.find(product => product.id === currentProductCardId);
+
+        const currentProductCardImg = currentProductCard.querySelector(".product-img");
+
+        console.log(currentProductCardImg);
+
+        const animateImg = new Image();
+        animateImg.src = currentProductCardImg.src;
+        animateImg.style.position = "fixed";
+       
+        animateImg.style.top = currentProductCardImg.getBoundingClientRect().top + "px";
+        animateImg.style.left = currentProductCardImg.getBoundingClientRect().left + "px";
+        animateImg.style.width = currentProductCardImg.getBoundingClientRect().width + "px";
+        animateImg.style.height = currentProductCardImg.getBoundingClientRect().height + "px";
+        document.body.append(animateImg)
+
+        
+
+        const keyframe = [
+          {
+              top:currentProductCardImg.getBoundingClientRect().top + "px",
+              left: currentProductCardImg.getBoundingClientRect().left + "px",
+          },
+          {
+            top:openDrawer.querySelector("svg").getBoundingClientRect().top + "px",
+            left: openDrawer.querySelector("svg").getBoundingClientRect().left + "px",
+            height : 0,
+            width :0,
+            transform :"rotate(2turn)"
+          }
+        ];
+
+        const duration = 500;
+
+        const addToCartAnimation = animateImg.animate(keyframe,duration);
+
+        const handleAnimationFinish = () => {
+          animateImg.remove();
+          openDrawer.classList.add("animate__tada");
+          openDrawer.addEventListener("animationend",() => {
+            openDrawer.classList.remove("animate__tada")
+          })
+        }
+        
+        addToCartAnimation.addEventListener("finish",handleAnimationFinish)
 
         cartItemGroup.append(createCartItem(currentProduct,1))
 

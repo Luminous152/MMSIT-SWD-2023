@@ -9,6 +9,8 @@ export const categoryTemplate =document.querySelector("#categoryTemplate");
 
 export const cartItemGroup =document.querySelector("#cartItemGroup");
 export const cartItemTemplate =document.querySelector("#cartItemTemplate");
+export const openDrawer =document.querySelector("#openDrawer");
+
 
 export const cartItemCount =document.querySelector("#cartItemCount");
 export const cartCount =document.querySelector("#cartCount");
