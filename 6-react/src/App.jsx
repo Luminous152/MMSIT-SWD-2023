@@ -1,34 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
 
-function App() {
-  const [count, setCount] = useState(0)
+import ListCreateForm from './ListCreateForm'
+import ListStatus from './ListStatus'
+import ListGroup from './ListGroup'
+import Heading from './Heading'
 
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+   <main id="app" className="bg-zinc-100 flex flex-col min-h-screen">
+  <div className="bg-white w-[450px] mx-auto mt-10 p-10">
+  <Heading />
+  <ListCreateForm />
+  <ListStatus />
+  <ListGroup />
+    
+  </div>
+</main>
+
   )
 }
 

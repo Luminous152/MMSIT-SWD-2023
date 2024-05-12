@@ -105,7 +105,7 @@ export const subRecordQuantity = (event) => {
     currentCost.innerText = currentPrice.innerText * currentQuantity.innerText;
     // updateRecordTotal();
   } else {
-    deleteRecord(event);
+    deleteRecord(event); 
   }
 };
 
